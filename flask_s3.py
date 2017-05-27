@@ -169,13 +169,13 @@ def url_for(endpoint, **values):
 
 def _bp_static_url(blueprint):
     """ builds the absolute url path for a blueprint's static folder """
-    u = six.u('%s%s' % (blueprint.url_prefix or '', blueprint.static_url_path or ''))
+    u = '%s%s' % (blueprint.url_prefix or '', blueprint.static_url_path or '')
     return u
 
 
 def _gather_files(app, hidden, filepath_filter_regex=None):
     """ Gets all files in static folders and returns in dict."""
-    dirs = [(six.u(app.static_folder), app.static_url_path)]
+    dirs = [(app.static_folder, app.static_url_path)]
     if hasattr(app, 'blueprints'):
         blueprints = app.blueprints.values()
         bp_details = lambda x: (x.static_folder, _bp_static_url(x))
